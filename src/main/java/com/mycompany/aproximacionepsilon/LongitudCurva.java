@@ -41,13 +41,24 @@ public class LongitudCurva {
 
     /**
      * Función a evaluar
-     * @param x
-     * @return 
+     * @param x Valor a evaluar en la función
+     * @return Resultado de la función al ser evaluada en x
      */
     public static double evaluar(double x) {
         return Math.pow(x, 2);        
     }
 
+    /**
+     * Método para calcular el área de un trapecio
+     * @param b1 Lado 1
+     * @param b2 Lado 2
+     * @param h Base
+     * @return Area
+     */
+    public static double area (double b1, double b2, double h){
+        return ((b1+b2)/2)*h;
+    }
+    
     public static void main(String[] args) {
         Scanner lectura = new Scanner (System.in);
         System.out.println("Aproximación: [Ej = 0.001]");
@@ -62,13 +73,16 @@ public class LongitudCurva {
 
         LinkedList hipotenusa = new LinkedList();
         double l = 0;
+        double a = 0;
         for (int i = 0; i < valor.size(); i++) {
             //System.out.println(valor.get(i)+" "+valor.get(i+1));
             try {
                 l += longitud(aprox, valor.get(i + 1).getY() - valor.get(i).getY());
+                a += area(valor.get(i).getY(), valor.get(i + 1).getY(), aprox);
             } catch (Exception e) {
             }
         }
         System.out.println("Longitud: " + l);
+        System.out.println("Area: "+a);
     }
 }
