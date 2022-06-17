@@ -4,6 +4,7 @@
  */
 package com.mycompany.aproximacionepsilon;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class LongitudCurva {
         return ((b1+b2)/2)*h;
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner lectura = new Scanner (System.in);
         System.out.println("Aproximación: [Ej = 0.001]");
         double aprox = lectura.nextDouble();
@@ -84,5 +85,6 @@ public class LongitudCurva {
         }
         System.out.println("Longitud: " + l);
         System.out.println("Area: "+a);
+        Runtime.getRuntime().exec("python curva.py");
     }
 }

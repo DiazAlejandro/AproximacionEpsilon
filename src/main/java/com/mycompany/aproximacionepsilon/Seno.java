@@ -14,7 +14,7 @@ public class Seno {
         double y = evaluarS(x); //Valor en y 
         double valx = 0;
         double x1 = 0, y1 = 0;
-        for (double i = inf ; i <= x ; i+=epsilon){
+        for (double i = inf ; i <= sup ; i+=epsilon){
             valx = evaluarS(i);
             //System.out.println("x = "+i+ " y = "+valx);
             if(valx>=(0.332333f)&& valx<=(0.334333)){
