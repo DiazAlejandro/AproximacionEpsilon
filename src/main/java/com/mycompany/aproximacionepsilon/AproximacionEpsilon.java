@@ -29,8 +29,8 @@ public class AproximacionEpsilon {
     public static double evaluar(double x) {
         return Math.pow(x, 2);
     }
-
-    public static void main(String[] args) {
-        val_x(0.00001, 0.5, 0.75);
+    
+    public double result (){
+        return val_x(0.00001, 0.5, 0.75);
     }
 }

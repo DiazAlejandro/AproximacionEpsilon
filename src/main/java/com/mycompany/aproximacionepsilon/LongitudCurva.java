@@ -59,6 +59,8 @@ public class LongitudCurva {
     public static double area (double b1, double b2, double h){
         return ((b1+b2)/2)*h;
     }
+    private static double longitud = 0;
+    private static double area = 0;
     
     public static void main(String[] args) throws IOException {
         Scanner lectura = new Scanner (System.in);
@@ -85,6 +87,40 @@ public class LongitudCurva {
         }
         System.out.println("Longitud: " + l);
         System.out.println("Area: "+a);
+        longitud = l;
+        area = a;
         Runtime.getRuntime().exec("python curva.py");
+    }
+    
+    public double[] result() throws IOException {
+        double [] res = new double [2];
+        Scanner lectura = new Scanner (System.in);
+        System.out.println("Aproximación: [Ej = 0.001]");
+        double aprox = lectura.nextDouble();
+        System.out.println("Limite inferior: ");
+        int inf = lectura.nextInt();
+        System.out.println("Limite superior: ");
+        int sup = lectura.nextInt();
+        
+        LinkedList<Valores> valor = generarValores(aprox, inf, sup);
+        ListIterator<Valores> iterador = valor.listIterator();
+
+        LinkedList hipotenusa = new LinkedList();
+        double l = 0;
+        double a = 0;
+        for (int i = 0; i < valor.size(); i++) {
+            //System.out.println(valor.get(i)+" "+valor.get(i+1));
+            try {
+                l += longitud(aprox, valor.get(i + 1).getY() - valor.get(i).getY());
+                a += area(valor.get(i).getY(), valor.get(i + 1).getY(), aprox);
+            } catch (Exception e) {
+            }
+        }
+        System.out.println("Longitud: " + l);
+        System.out.println("Area: "+a);
+        res[0] = l;
+        res[1] = a;
+        Runtime.getRuntime().exec("python curva.py");
+        return res;
     }
 }
